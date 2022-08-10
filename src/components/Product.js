@@ -32,14 +32,10 @@ const Product = ({
               {price}
             </Badge>
           </Card.Text>
-          <div className="d-flex justify-content-around flex-1">
-            <div>
-              <Button variant="outline-primary" onClick={decrementHandle}>
-                <AiFillMinusCircle />
-              </Button>
-              <Button variant="outline-primary" onClick={incrementHandle}>
-                <BsFillPlusCircleFill />
-              </Button>
+          <div className="d-flex justify-content-around align-items-center">
+            <div className="mx-4">
+              <AiFillMinusCircle className="quantity-icon decrement" onClick={decrementHandle} />
+              <BsFillPlusCircleFill className="quantity-icon increment" onClick={incrementHandle} />
             </div>
             <div>
               <Button variant="outline-danger" onClick={deleteHandle}>
