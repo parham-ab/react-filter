@@ -16,17 +16,23 @@ const ProductsList = () => {
       quantity: 3,
     },
     {
-      id: 1,
+      id: 3,
       title: "Apple Tv",
       price: "$749",
       quantity: 3,
     },
   ]);
 
+  // delete function
+  const deleteHandle = (id) => {
+    const filteredProducts = products.filter((item) => item.id !== id);
+    setProducts(filteredProducts);
+  };
+
   return (
     <>
       {products.map((item) => (
-        <Product key={item.id} {...item} />
+        <Product key={item.id} data={item} deleteHandle={deleteHandle} />
       ))}
     </>
   );

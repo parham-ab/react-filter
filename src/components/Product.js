@@ -1,12 +1,14 @@
 import React from "react";
 
-const Product = (props) => {
-  const { id, title, price, quantity } = props;
+const Product = ({ data, deleteHandle }) => {
+  const { id, title, price, quantity } = data;
 
-  return <div>
-    {title} {price} {quantity}
-    <button>delete</button>
-  </div>;
+  return (
+    <div>
+      {title} {price} {quantity}
+      <button onClick={() => deleteHandle(id)}>delete</button>
+    </div>
+  );
 };
 
 export default Product;
