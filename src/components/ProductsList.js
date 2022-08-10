@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 // bootstrap
 import Form from "react-bootstrap/Form";
+import { Container } from "react-bootstrap";
+
 // components
 import Product from "./Product";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
   //   base url
   const BASE_URL = `https://fakestoreapi.com/products`;
   //  fetch functions
@@ -57,11 +60,23 @@ const ProductsList = () => {
     console.log(selectedItemCount);
     setProducts(products);
   };
+  // search
+  const searchProducts = products.filter((item) =>
+    item.title.toLowerCase().includes(search.toLocaleLowerCase())
+  );
 
   return (
-    <div>
+    <Container>
+      {/* search */}
+      <Form.Control
+        size="lg"
+        type="search"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {/* filter */}
       <Form.Select
-        // defaultValue={"All"}
         size="sm"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
@@ -72,7 +87,8 @@ const ProductsList = () => {
         <option>men's clothing</option>
         <option>women's clothing</option>
       </Form.Select>
-      {products.map((item) => (
+
+      {searchProducts.map((item) => (
         <Product
           key={item.id}
           data={item}
@@ -80,7 +96,7 @@ const ProductsList = () => {
           incrementHandle={incrementHandle}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 
