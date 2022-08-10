@@ -1,5 +1,7 @@
 import React from "react";
 import { Badge, Container } from "react-bootstrap";
+// functions
+import { shortener } from "../functions/shortener";
 // bootstrap components
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -7,24 +9,17 @@ import Card from "react-bootstrap/Card";
 import { BsTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
 import { AiFillMinusCircle } from "react-icons/ai";
 
-const Product = ({
-  data,
-  deleteHandle,
-  incrementHandle,
-  decrementHandle,
-  //   changeHandle,
-  //   titleVal,
-}) => {
-  const { id, title, price, quantity } = data;
+const Product = ({ data, deleteHandle, incrementHandle }) => {
+  const { id, title, price, count } = data;
 
   return (
     <Container>
       <Card className="m-5">
-        <Card.Body className="d-flex justify-content-around align-items-center flex-md-row flex-column">
-          <Card.Title>Product: {title}</Card.Title>
+        <Card.Body className="d-flex justify-content-between align-items-center flex-md-row flex-column">
+          <Card.Title>Product: {shortener(title)}</Card.Title>
           <Card.Text>
             <Badge pill bg="secondary">
-              {quantity}
+              {count}
             </Badge>
           </Card.Text>
           <Card.Text>
@@ -34,11 +29,17 @@ const Product = ({
           </Card.Text>
           <div className="d-flex justify-content-around align-items-center">
             <div className="mx-4">
-              <AiFillMinusCircle className="quantity-icon decrement" onClick={decrementHandle} />
-              <BsFillPlusCircleFill className="quantity-icon increment" onClick={incrementHandle} />
+              <AiFillMinusCircle
+                className="quantity-icon decrement"
+                // onClick={decrementHandle}
+              />
+              <BsFillPlusCircleFill
+                className="quantity-icon increment"
+                onClick={() => count++}
+              />
             </div>
             <div>
-              <Button variant="outline-danger" onClick={deleteHandle}>
+              <Button variant="outline-danger" onClick={() => deleteHandle(id)}>
                 <BsTrashFill />
               </Button>
             </div>
