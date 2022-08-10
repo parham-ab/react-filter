@@ -30,17 +30,28 @@ const ProductsList = () => {
   };
   // increment function
   const incrementHandle = (id) => {
-    const selectedItem = products.find((item) => item.id === id);
+    let selectedItem = products.find((item) => item.id === id);
     selectedItem.quantity++;
-    setProducts(selectedItem);
+    setProducts(products);
     console.log(selectedItem);
+
+    // selectedItem.quantity++;
+    // setProducts(selectedItem);
   };
   // decrementHandle function
   const decrementHandle = (id) => {
     const selectedItem = products.find((item) => item.id === id);
-    selectedItem.quantity--;
-    setProducts(products);
-    console.log(selectedItem);
+    // selectedItem.quantity--;
+    // setProducts(products);
+    // console.log(selectedItem);
+  };
+  // input onChange handle
+  const changeHandle = (e, id) => {
+    // console.log(e.target.value, id);
+    // setProducts({ ...products, [e.target.id]: e.target.value });
+    const selectedItem = products.find((item) => item.id === id);
+    console.log(selectedItem.title, e.target.value);
+    // selectedItem.title = e.target.value;
   };
 
   return (
@@ -52,6 +63,8 @@ const ProductsList = () => {
           deleteHandle={() => deleteHandle(item.id)}
           incrementHandle={() => incrementHandle(item.quantity)}
           decrementHandle={() => decrementHandle(item.quantity)}
+          //   titleVal={item.title}
+          //   changeHandle={(e) => changeHandle(e, item.id)}
         />
       ))}
     </>

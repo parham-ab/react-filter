@@ -1,18 +1,57 @@
 import React from "react";
+import { Badge, Container } from "react-bootstrap";
+// bootstrap components
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+// icons
+import { BsTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
+import { AiFillMinusCircle } from "react-icons/ai";
 
-const Product = ({ data, deleteHandle, incrementHandle, decrementHandle }) => {
-  const { title, price, quantity } = data;
+const Product = ({
+  data,
+  deleteHandle,
+  incrementHandle,
+  decrementHandle,
+  //   changeHandle,
+  //   titleVal,
+}) => {
+  const { id, title, price, quantity } = data;
 
   return (
-    <div>
-      <h3>{title}</h3>
-      <p>{price}</p>
-      <p>{quantity}</p>
+    <Container>
+      <Card className="m-5">
+        <Card.Body className="d-flex justify-content-around align-items-center flex-md-row flex-column">
+          <Card.Title>Product: {title}</Card.Title>
+          <Card.Text>
+            <Badge pill bg="secondary">
+              {quantity}
+            </Badge>
+          </Card.Text>
+          <Card.Text>
+            <Badge pill bg="secondary">
+              {price}
+            </Badge>
+          </Card.Text>
+          <div className="d-flex justify-content-around flex-1">
+            <div>
+              <Button variant="outline-primary" onClick={decrementHandle}>
+                <AiFillMinusCircle />
+              </Button>
+              <Button variant="outline-primary" onClick={incrementHandle}>
+                <BsFillPlusCircleFill />
+              </Button>
+            </div>
+            <div>
+              <Button variant="outline-danger" onClick={deleteHandle}>
+                <BsTrashFill />
+              </Button>
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
 
-      <button onClick={decrementHandle}>-</button>
-      <button onClick={incrementHandle}>+</button>
-      <button onClick={deleteHandle}>delete</button>
-    </div>
+      {/* <input value={titleVal} type="text" onChange={changeHandle} /> */}
+    </Container>
   );
 };
 
