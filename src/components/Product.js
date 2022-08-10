@@ -6,10 +6,9 @@ import { shortener } from "../functions/shortener";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 // icons
-import { BsTrashFill, BsFillPlusCircleFill } from "react-icons/bs";
-import { AiFillMinusCircle } from "react-icons/ai";
+import { BsTrashFill } from "react-icons/bs";
 
-const Product = ({ data, deleteHandle, incrementHandle }) => {
+const Product = ({ data, deleteHandle }) => {
   const { id, title, price, count } = data;
 
   return (
@@ -27,27 +26,14 @@ const Product = ({ data, deleteHandle, incrementHandle }) => {
               {price}
             </Badge>
           </Card.Text>
-          <div className="d-flex justify-content-around align-items-center">
-            <div className="mx-4">
-              <AiFillMinusCircle
-                className="quantity-icon decrement"
-                // onClick={decrementHandle}
-              />
-              <BsFillPlusCircleFill
-                className="quantity-icon increment"
-                onClick={() => count++}
-              />
-            </div>
-            <div>
-              <Button variant="outline-danger" onClick={() => deleteHandle(id)}>
-                <BsTrashFill />
-              </Button>
-            </div>
+
+          <div>
+            <Button variant="outline-danger" onClick={() => deleteHandle(id)}>
+              <BsTrashFill />
+            </Button>
           </div>
         </Card.Body>
       </Card>
-
-      {/* <input value={titleVal} type="text" onChange={changeHandle} /> */}
     </Container>
   );
 };

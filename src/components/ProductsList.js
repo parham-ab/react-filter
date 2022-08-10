@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 // bootstrap
-import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 // components
 import Product from "./Product";
@@ -52,14 +52,6 @@ const ProductsList = () => {
     const filteredItems = products.filter((item) => item.id !== id);
     setProducts(filteredItems);
   };
-  // incrementHandle
-  const incrementHandle = (id) => {
-    const selectedItem = products.find((item) => item.id === id);
-    let selectedItemCount = selectedItem.count;
-    selectedItemCount++;
-    console.log(selectedItemCount);
-    setProducts(products);
-  };
   // search
   const searchProducts = products.filter((item) =>
     item.title.toLowerCase().includes(search.toLocaleLowerCase())
@@ -67,35 +59,34 @@ const ProductsList = () => {
 
   return (
     <Container>
-      {/* search */}
-      <Form.Control
-        size="lg"
-        type="search"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {/* filter */}
-      <Form.Select
-        size="sm"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option>All</option>
-        <option>jewelery</option>
-        <option>electronics</option>
-        <option>men's clothing</option>
-        <option>women's clothing</option>
-      </Form.Select>
-
-      {searchProducts.map((item) => (
-        <Product
-          key={item.id}
-          data={item}
-          deleteHandle={deleteHandle}
-          incrementHandle={incrementHandle}
+      <div className="products-container">
+        {/* search */}
+        <input
+          className="search"
+          type="search"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
-      ))}
+        {/* filter */}
+        <Form.Select
+          className="m-auto"
+          size="sm"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          style={{ width: "150px" }}
+        >
+          <option>All</option>
+          <option>jewelery</option>
+          <option>electronics</option>
+          <option>men's clothing</option>
+          <option>women's clothing</option>
+        </Form.Select>
+
+        {searchProducts.map((item) => (
+          <Product key={item.id} data={item} deleteHandle={deleteHandle} />
+        ))}
+      </div>
     </Container>
   );
 };
