@@ -9,21 +9,17 @@ import Card from "react-bootstrap/Card";
 import { BsTrashFill } from "react-icons/bs";
 
 const Product = ({ data, deleteHandle }) => {
-  const { id, title, price, count } = data;
+  const { id, title, price, image } = data;
 
   return (
     <Container>
-      <Card className="m-5">
+      <Card className="m-5 shadow-sm">
         <Card.Body className="d-flex justify-content-between align-items-center flex-md-row flex-column">
-          <Card.Title>Product: {shortener(title)}</Card.Title>
+          <img src={image} alt={title} width={100} />
+          <Card.Title>{shortener(title)}</Card.Title>
           <Card.Text>
             <Badge pill bg="secondary">
-              {count}
-            </Badge>
-          </Card.Text>
-          <Card.Text>
-            <Badge pill bg="secondary">
-              {price}
+              ${price}
             </Badge>
           </Card.Text>
 

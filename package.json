@@ -12,6 +12,7 @@
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-loader-spinner": "^5.1.7-beta.1",
     "react-scripts": "5.0.1",
     "sass": "^1.54.4",
     "web-vitals": "^2.1.4"

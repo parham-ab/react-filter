@@ -3,7 +3,8 @@ import axios from "axios";
 // bootstrap
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-
+// preloader
+import { InfinitySpin } from "react-loader-spinner";
 // components
 import Product from "./Product";
 
@@ -46,7 +47,6 @@ const ProductsList = () => {
     category === "men's clothing" && fetchmens();
     category === "women's clothing" && fetchWomens();
   }, [category]);
-
   // delete handle
   const deleteHandle = (id) => {
     const filteredItems = products.filter((item) => item.id !== id);
@@ -57,6 +57,12 @@ const ProductsList = () => {
     item.title.toLowerCase().includes(search.toLocaleLowerCase())
   );
 
+  if (!products.length)
+    return (
+      <div className="d-flex justify-content-center">
+        <InfinitySpin width="200" color="#4834d4" />
+      </div>
+    );
   return (
     <Container>
       <div className="products-container">
