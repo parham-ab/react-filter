@@ -1,12 +1,17 @@
 import React from "react";
 
-const Product = ({ data, deleteHandle }) => {
-  const { id, title, price, quantity } = data;
+const Product = ({ data, deleteHandle, incrementHandle, decrementHandle }) => {
+  const { title, price, quantity } = data;
 
   return (
     <div>
-      {title} {price} {quantity}
-      <button onClick={() => deleteHandle(id)}>delete</button>
+      <h3>{title}</h3>
+      <p>{price}</p>
+      <p>{quantity}</p>
+
+      <button onClick={decrementHandle}>-</button>
+      <button onClick={incrementHandle}>+</button>
+      <button onClick={deleteHandle}>delete</button>
     </div>
   );
 };

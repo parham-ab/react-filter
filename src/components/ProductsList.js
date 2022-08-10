@@ -28,11 +28,31 @@ const ProductsList = () => {
     const filteredProducts = products.filter((item) => item.id !== id);
     setProducts(filteredProducts);
   };
+  // increment function
+  const incrementHandle = (id) => {
+    const selectedItem = products.find((item) => item.id === id);
+    selectedItem.quantity++;
+    setProducts(selectedItem);
+    console.log(selectedItem);
+  };
+  // decrementHandle function
+  const decrementHandle = (id) => {
+    const selectedItem = products.find((item) => item.id === id);
+    selectedItem.quantity--;
+    setProducts(products);
+    console.log(selectedItem);
+  };
 
   return (
     <>
       {products.map((item) => (
-        <Product key={item.id} data={item} deleteHandle={deleteHandle} />
+        <Product
+          key={item.id}
+          data={item}
+          deleteHandle={() => deleteHandle(item.id)}
+          incrementHandle={() => incrementHandle(item.quantity)}
+          decrementHandle={() => decrementHandle(item.quantity)}
+        />
       ))}
     </>
   );
