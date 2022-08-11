@@ -41,11 +41,27 @@ const ProductsList = () => {
   }, []);
   // fetch based on category
   useEffect(() => {
-    category === "All" && fetchAll();
-    category === "jewelery" && fetchJewelry();
-    category === "electronics" && fetchElectronics();
-    category === "men's clothing" && fetchmens();
-    category === "women's clothing" && fetchWomens();
+    switch (category) {
+      case "All":
+        fetchAll();
+        break;
+      case "jewelery":
+        fetchJewelry();
+        break;
+      case "electronics":
+        fetchElectronics();
+        break;
+      case "men's clothing":
+        fetchmens();
+        break;
+      case "women's clothing":
+        fetchWomens();
+        break;
+
+      default:
+        fetchAll();
+        break;
+    }
   }, [category]);
   // delete handle
   const deleteHandle = (id) => {
